@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+class cadenas
+{
+    public:
+        cadenas();
+        void imprimir(char dato);
+        virtual ~cadenas();
+
+    protected:
+
+    private:
+        struct nodo{
+        char elemento;
+        nodo * sig = NULL;
+        };
+
+        nodo * ptr;
+};
+
+---------------------------------------------------------------------------------------------------------
+#include "cadenas.h"
+
+
+cadenas::cadenas()
+{
+    ptr = NULL;
+    //ctor
+}
+
+void cadenas::imprimir(char dato){
+//Aca agrega un elemento y lo imprime para que vean que funciona
+    if (ptr == NULL){
+        nodo * aux = new nodo;
+        aux->elemento = dato;
+        aux->sig = NULL;
+        ptr = aux;
+        aux = NULL;
+    }
+    cout << ptr->elemento;
+}
+
+cadenas::~cadenas()
+{
+   delete [] ptr;
+}
+
+---------------------------------------------------------------------------------------------------------
+#include <iostream>
+#include "cadenas.h"
+int main()
+{
+    char elemento;
+    cadenas A;
+    cout << "Ingrese elemento" << endl;
+    cin >> elemento;
+    A.imprimir(elemento);
+    return 0;
+}
